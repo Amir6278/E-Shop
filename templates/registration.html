@@ -1,0 +1,132 @@
+{% extends 'base.html' %}
+{% block title %} Sign Up {% endblock title %}
+{% block 'maincontent' %}
+ 
+{% if messages %}
+{% for message in messages %}
+   {% if message.tags == 'error' %}
+   <div class="alert alert-danger font-weight-bold text-center">{{message}}</div>
+   {% else %}
+   <div class="alert alert-{{message.tags}} font-weight-bold text-center">{{message}}</div>
+   {% endif %}
+{% endfor %}
+    
+   {% endif %}
+<div class="container mx-auto center" id="Register">
+     
+    <div class="row  shadow-lg my-3 myrow rounded">
+        <div class="col-12">
+            <form action="" method="post" novalidate>
+                {% csrf_token %}
+                <div class="row my-5">
+
+                    <div class="col-12 ">
+                        <h3 class="text-center">Register to E-Shop</h3>
+                    </div>
+
+
+                </div>
+
+                <div class="mb-0">
+                    <div class="row mb-1">
+
+                        <div class="col-md-1 col-1 col-xs-1">
+                            <span><i class="fas fa-user-tie"></i></span>
+                        </div>
+                        <div class="col-md-11 col-10 col-xs-11">
+                            <input type="name" class="form-control mb-1" id="name" name="{{form.username.name}}" maxlength="15"
+                                aria-describedby="name" placeholder="User Name">
+                                {% for err in form.username.errors %}
+                                <small class="text-danger">{{err}}</small>
+                                {% endfor %}
+                        </div>
+                    </div>
+
+
+
+                    <div class="row mb-1">
+
+                        <div class="col-md-1 col-1 col-lg-1">
+                            <span><i class="fas fa-envelope-open"></i></span>
+                        </div>
+                        <div class="col-md-11 col-10 col-lg-11">
+                            <input type="email" class="form-control mb-1" name="{{form.email.name}}" id="email"
+                                aria-describedby="emailHelp" placeholder="example@mail.com">
+                                {% for err in form.email.errors %}
+                                <small class="text-danger">{{err}}</small>
+                                {% endfor %}
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="mb-0">
+
+                    <div class="row mb-1">
+
+                        <div class="col-md-1 col-1 ">
+                            <span><i class="fas fa-user-cog mr-1"></i></span>
+                        </div>
+                        <div class="col-md-11 col-10 col-lg-11">
+                            <input type="password" class="form-control mb-1" name="{{form.password1.name}}" id="password"
+                                placeholder="Password">
+                                {% for err in form.password1.errors %}
+                                <small class="text-danger">{{err}}</small>
+                                {% endfor %}
+                            </div>
+                             
+                    </div>
+
+                    <div class="row mb-1">
+
+                        <div class="col-md-1 col-1">
+                            <span><i class="fas fa-user-check"></i></span>
+                        </div>
+                        <div class="col-md-11 col-10">
+                            <input type="password" class="form-control mb-1" name="{{form.password2.name}}" id="password2"
+                                placeholder=" Confirm Password">
+                        <div class="form-text text-muted text-lowercase font-weight-normal d-inline">Make Sure to use the same password</div>
+
+                                {% for err in form.password2.errors %}
+                                <small class="text-danger text-justify">{{err}}</small>
+                                {% endfor %}
+                                
+                            
+                        </div>
+                    </div>
+
+                </div>
+
+               
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn rmybtn btn-primary w-100 mx-auto mb-1 py-2"
+                                name="submit"><i class="fas fa-user-plus mx-2"></i> REGISTER</button>
+                        </div>
+                    </div>
+                 
+                    <div class="row my-1">
+                        
+                        <div class="col-12 text-left">
+                            <small><a href="{% url 'login' %}" class="text-nowrap">
+                                Already have account?
+                            </a>
+                        </small>
+                        </div>
+                    </div>
+               
+
+                    
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+{% endblock 'maincontent' %}
+
+

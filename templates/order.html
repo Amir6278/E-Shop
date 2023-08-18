@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Cart{% endblock 'title' %}Cart
+{% block 'maincontent' %}
+
+{% if messages %}
+  {% for message in messages %}
+     {% if message.tags == 'error' %}
+     <div class="alert alert-danger font-weight-bold text-center">{{message}}</div>
+     {% else %}
+     <div class="alert alert-{{message.tags}} font-weight-bold text-center">{{message}}</div>
+     {% endif %}
+  {% endfor %}
+      
+     {% endif %}
+{{item}}
+
+ {% if data %}
+ 
+  
+  <table class="table table-bordered table-hover w-75 mx-auto ">
+    <style>
+      
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+            word-spacing:2px;
+          }
+        </style>
+    <thead class="thead-light">
+      <tr>
+        <th scope="col">Serial</th>
+        <th scope="col"> order code</th>
+        <th scope="col"> Product image</th>
+        <th scope="col">Product name </th>
+        <th scope="col">Quantity </th>
+        <th scope="col">Unit Total </th>
+
+        <th scope="col"> Status</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for d in data %}
+      <tr>
+        <td >{{forloop.counter}}</td>
+        <td> <strong>{{d.order_code}}</strong> </td>
+        <td><img src="{{d.product_id.feature_img.url}}" alt="{{d.product_id.alternatetext}}" height="100" width="100" srcset=""></td>
+        <td class="fw-bold"> <strong>{{d.product_id.name}}</strong></td>
+        <td>
+            <strong>{{d.unit}}</strong>
+        </td>
+        <td> <strong>{{d.unit_total}}</strong> </td>
+        <td>   {{d.status|capfirst}}
+            <div class="progress">
+                {% if d.status == 'Placed' %}
+                <div class="progress-bar bg-warning" role="progressbar" style="width: 40%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    
+                </div>
+                
+               
+                {% elif d.status == 'Accepted' %}
+               
+                <div class="progress-bar bg-info" role="progressbar" style="width: 65%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+          
+                </div>
+                
+                {% elif d.status == 'ontheway' %}
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
+
+                </div>
+                {% endif %}
+              </div>
+             </td>
+
+      </tr>
+      {% endfor %}
+       
+    </tbody>
+    <tfoot>
+        <tr >
+            
+            <td colspan="6 clear text-center">
+                  <strong>
+                     <span class="text-dark float-right px-5 ">Delivery  : 60 </span>
+                  </strong>
+     
+             </td> </tr>
+        <tr >
+            
+       <td colspan="6 clear">
+             <strong>
+              
+                <span class="text-dark float-right px-5 ">Total  : {{price|add:60}}</span>
+             </strong>
+
+        </td> </tr>
+    </tfoot>
+  </table>
+  <div class="row w-100 text-center">
+  </div>
+
+ 
+ {% else %}
+ <div class="alert alert-danger text-center fw-bold " role="alert">
+    <h3>    You have no Current Order
+    </h3>
+  </div>
+  
+ 
+ {% endif %}
+
+{% endblock 'maincontent' %}

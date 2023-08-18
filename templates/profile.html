@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{%load static %}
+{% block 'maincontent' %}
+{% if messages %}
+{% for message in messages %}
+   {% if message.tags == 'error' %}
+   <div class="alert alert-danger font-weight-bold text-center">{{message}}</div>
+   {% else %}
+   <div class="alert alert-{{message.tags}} font-weight-bold text-center">{{message}}</div>
+   {% endif %}
+{% endfor %}
+    
+   {% endif %}
+<div class="container my-2" id="profile" style="overflow:hidden;">
+    <div class="row">
+            
+        <div class="col-md-12 col-sm-12 main_content">
+         <div class="card">
+             <div class="card-header">
+             <div class="row">
+                 <div class="col-md-12 text-center py-2">
+                     <h4 class="card_header_title font-weight-bold"> Profile </h4>
+    
+                 </div>
+                 
+                 <div class="clearfix"></div>
+             </div>
+             </div>
+             <div class="card-body">
+               <div class="row">
+                   
+                   <div class="col-md-12 col-sm-12">
+                     <form action="" method="post"  enctype="multipart/form-data" novalidate>
+                        {% csrf_token %}
+                        <table class="table table-bordered table-striped table-hover">
+                            <tbody>
+                             {% for field in form %}
+                               <tr class="px-2"> 
+                                <div class="row">
+                                  <div class="col-md-3 col-sm-3">
+                                    <td> {{field.label_tag}} </td>
+                                 
+                                  </div>
+                                  <div class="col-md-9 col-sm-9">
+                                    <td> {{field}}
+                                  </div>
+                                </div>
+                               </tr>
+                             {% endfor %}
+                        </tbody></table>
+                        <button  type="submit" class="btn btn-dark w-100 mb-2" name="update" value="update">UPDATE</button>
+                     </form>
+                   </div>
+                 
+               </div>
+             </div>
+           </div>
+        </div>
+    </div>
+    
+</div>
+
+{% endblock 'maincontent' %}

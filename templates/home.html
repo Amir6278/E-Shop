@@ -1,0 +1,188 @@
+  {% extends 'base.html' %}
+  {% block 'maincontent' %}
+  
+  <main class="container-fluid">
+    <div class="row">
+      <div class="col-lg-2 col-md-2">
+        <ul class="list-group mt-3">
+          
+          <li class="list-group-item font-weight-normal bg-dark text-white">Sub Products</li>
+          {% for p in product %}
+          
+         
+          <li class="list-group-item w-100" style="overflow:hidden;">
+            <a class="text-decoration-none font-weight-light text-dark {% if p.id == pid  %} {{ active }} {% endif %}" href="{% url 'product_type' p.id %}"> {{ p.name|capfirst }}</a>
+          </li>
+          {% endfor %}
+          
+        </ul>
+      </div>
+        <div class="col-md-10">
+          <div class="container">
+        
+            <!--Navbar-->
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-5">
+      
+              <!-- Navbar brand -->
+              <span class="navbar-brand">Categories:</span>
+      
+              <!-- Collapse button -->
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+                aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+      
+              <!-- Collapsible content -->
+              <div class="collapse navbar-collapse" id="basicExampleNav">
+      
+                <!-- Links -->
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item  {% if 'all' %} {{all}} {% endif %} ">
+                    <a class="nav-link" href="/">All
+                      <span class="sr-only">(current)</span>
+                    </a>
+                  </li>
+                  {% for cat in category %}
+                  <li class="nav-item  {% if cat.id == id  %} {{active}} {% endif %}  ">
+                    <a class="nav-link " href="{% url 'cat_product' cat.id %}">{{cat.name|capfirst}}</a>
+                  </li>
+                  {% endfor %}
+                  
+                  
+                </ul>
+                <!-- Links -->
+      
+                <form class="form-inline">
+                  <div class="md-form my-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                  </div>
+                </form>
+              </div>
+              <!-- Collapsible content -->
+      
+            </nav>
+            
+            <!--/.Navbar-->
+      
+            <!--Section: Products v.3-->
+            
+            <section class="text-center mb-4">
+             
+              <!--Grid row-->
+              <div class="row wow fadeIn">
+      
+                <!--Grid column-->
+                {% for d in inventory %}
+                <div class="col-lg-3 col-md-6 mb-4">
+      
+                  <!--Card-->
+                  <a href="{% url 'productdetail' d.id  %}">
+                  <div class="card mycard">
+                   
+                    <!--Card image-->
+                    <div class="view overlay">
+      
+                   
+                      <img src="{{ d.feature_img.url }}" class="card-img-top img-fluid"
+                        alt="">
+                           
+                        <div class="mask rgba-white-slight"></div>
+                     
+                    </div>
+                    <!--Card image-->
+      
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                      <!--Category & Title-->
+                      <span class="grey-text">
+                        <h5>{{ d.product.name }}</h5>
+                      </span>
+                      <h4>
+                        <strong>
+                          <span class="dark-grey-text"> {{ d.name }}
+                            {% comment %} <span class="badge badge-pill danger-color">NEW</span> {% endcomment %}
+                          </span>
+                        </strong>
+                      </h4>
+      
+                      <h6 class="font-weight-bold blue-text">
+                        <strong> {{ d.price}} </strong>
+                      </h6>
+                      
+                    </div>
+                    <!--Card content-->
+                  </div>
+                  <!--Card-->
+                     </a>
+      
+                </div>
+                <!--Grid column-->
+                  {%endfor%}
+                <!--Grid column
+                <!--Fourth column-->
+      
+              </div>
+              <!--Grid row-->
+      
+              <!--Grid row-->
+             
+              <!--Grid row-->
+      
+            </section>
+            <!--Section: Products v.3-->
+      
+            <!--Pagination-->
+            <nav class="d-flex justify-content-center wow fadeIn">
+              <ul class="pagination pg-blue">
+      
+                <!--Arrow left-->
+                {% if inventory.has_previous %}
+                <li class="page-item ">
+                  <a class="page-link" href="?page={{inventory.previous_page_number}}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item ">
+                  <a class="page-link" href="?page={{inventory.previous_page_number}}"> {{inventory.previous_page_number}}
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                {% endif %}
+                <li class="page-item active">
+                  <a class="page-link" href="?page={{inventory.number}}"> {{inventory.number}}
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+               
+                {% if inventory.has_next %}
+                <li class="page-item ">
+                  <a class="page-link" href="?page={{inventory.next_page_number}}"> {{inventory.next_page_number}}
+                    <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="?page={{inventory.next_page_number}}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+                {% endif %}
+              </ul>
+            </nav>
+            <!--Pagination-->
+      
+          </div>
+        </div>
+    </div>
+  </main>
+  {% endblock 'maincontent' %}
+
+ 
+
+
+
+  
+
+
+

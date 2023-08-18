@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block 'maincontent' %}
+
+<main class="m-2" id="product">
+  <div class="container dark-grey-text mt-5">
+
+    <!--Grid row-->
+    <div class="row wow fadeIn">
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <img src="{{ data.feature_img.url }}" class="img-fluid" alt="{{data.feature_img.alternattext}}"><br>
+        <div class="container">
+          <div class="row mt-1 w-75 border text-center">
+            {% for img  in data.img_url %}
+           <div class="col-md-4  col-lg-4"> <img src="/media/{{ img }}" class="img-fluid extraimg" alt="{{img.alternattext}}" srcset=""></div>
+           {% endfor %}
+ 
+         </div>
+        </div>
+  
+
+      </div>
+      <!--Grid column-->
+
+      <!--Grid column-->
+      <div class="col-md-6 mb-4">
+
+        <!--Content-->
+        <div class="p-4">
+           
+          <div class="mb-3">
+            <a href="{% url 'cat_product' data.category.id %}">
+              <span class="badge purple mr-1"> {{data.category.name}} </span>
+            </a>
+            <a href="{% url 'product_type' data.product.id %}">
+              <small class="mr-1"> {{data.product_type}} </small>
+            </a>
+            <h3 class="font-weight-bold">{{data.name}}</h3>
+          </div>
+
+          <p class="lead">
+            <span class="mr-1">
+              {% comment %} <del>$200</del> {% endcomment %}
+            </span>
+            <span class="lead">Price : </span>
+            <span>{{data.price}}</span>
+            
+          </p>
+
+          <p class="font-weight-normal mb-2 text-left"> 
+                        {{data.des}}
+          </p>
+
+           <form action="/addcart/" method="POST" class="ml-3" validate>
+            {% csrf_token %}
+            <input type="hidden" name="inventory_id" value="{{data.id}}">
+           <div class="row my-2">
+            {% if data.attrs %}
+            <small>size:</small>
+            <div class="col-md-12 col-sm-12">
+                 {% for size in data.attrs %}
+                
+                  <div class="form-check mx-2">
+                    <input class="form-check-input " type="radio" name="size" value="{{size}}" id="attrs" {% if item_cart %} {% if size == cart.size %} {{ selected }} {% endif %} {% endif %}> 
+                    <label class="form-check-label" for="{{size}}">
+                      {{size}}
+                    </label>
+                  </div> 
+                
+               {% endfor %}
+         
+                </div>
+            {% endif %}
+           </div>     
+           <div class="row my-2">
+          
+            {% if data.attrc %}
+            <small>color:</small>
+            <div class="col-md-12 col-sm-12">
+              {% for color in data.attrc %}
+              <div class="form-check mx-2">
+               <input class="form-check-input " type="radio" name="color" value="{{color}}"  id="attrc"  {% if color == cart.color %} {{selected}} {% endif %}>
+               <label class="form-check-label" for="{{color}}">
+                 {{color}}
+               </label>
+             </div>
+               
+              {% endfor %}
+            </div>
+            
+            {% endif %}
+           </div>     
+
+
+            <!-- Default input -->
+          <div class="row">
+                {% if item_cart %}
+                <input type="hidden" name="btnU" value="update">
+                <button class="btn btn-warning text-dark" type="submit"> <span class="font-weight-normal">view cart</span> 
+                  <i class="fas fa-shopping-cart ml-1"></i>
+                </button>
+            
+                {% else %}
+                <input type="hidden" name="btn" value="add">
+            <button class="btn btn-primary text-dark" type="submit"> <span class="font-weight-normal">Add to cart</span> 
+              <i class="fas fa-shopping-cart ml-1"></i>
+            </button>
+            {% endif %}
+          </div>
+           
+
+          </form>
+        </div>
+        <!--Content-->
+
+      </div>
+      <!--Grid column-->
+
+    </div>
+    <!--Grid row-->
+
+    
+   
+
+    </div>
+    <br> <br>
+    <hr>
+    <div class="row my-5">
+      <div class="col-md-12 text-center">
+        <h2 class="mx-auto font-weight-normal">More product on these type</h2>
+      </div>
+    </div>
+
+
+
+   
+    <div class="owl-carousel owl-theme text-center mb-2" id="slider">
+      {% for item in more %}
+      <div class="item border pb-4" style="height:280px">
+       
+       <a href="{% url 'productdetail' item.id %}">
+        <div class="card text-center mb-2 w-100">
+          <div class="card-head" style="height:180px!important; overflow:hidden;">
+            <img src="{{item.feature_img.url}}" class="img-fluid card-img-top w-75 mx-auto" alt="" srcset="">
+          </div>
+         
+          <h5 class="text-dark my-1"> <strong>{{item.name}}</strong> </h5>
+          <strong class="blue-text mb-2"> {{item.price}}</strong>
+         </div>
+       </a>
+      </div>
+      {% endfor %}
+      
+    </div>
+
+</main>
+
+{% endblock 'maincontent' %}
+
+
+

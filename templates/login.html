@@ -1,0 +1,100 @@
+
+
+{% extends 'base.html' %}
+{% block title %} Log in {% endblock title %}
+{% block 'maincontent' %}
+{% if messages %}
+
+
+    <div class="alert alert-danger font-weight-bold mb-0 text-center" role="alert">
+        {% for message in messages %}
+        {{message}}
+        {% endfor %}
+       </div>
+       {% endif %}
+<div class="container mx-auto mb-3 center mt-0 pt-0" id="login">
+    
+
+
+
+    <div class="row  shadow-lg mt-5 myrow rounded">
+        <div class="col-lg-12 col-md-12 col-12 w-100">
+            <form action="" method="post" novalidate>
+                 {% csrf_token %}
+                <div class="row my-5">
+
+                    <div class="col-12 ">
+                        <h3 class="text-center ">Log In to E-Shop</h3>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="row mb-1">
+
+                    <div class="col-lg-1 col-md-1 col-2 col-xs-2">
+                        <span><i class="fas fa-envelope-open"></i></span>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-10 col-xs-10">
+                        <input type="email" class="form-control mb-2" id="email" name="{{form.email.name}}" maxlength="200"
+                            aria-describedby="email" placeholder="example@mail.com">
+                            {% for err in form.email.errors %}
+                            <small class="text-danger">{{err}}</small>
+                            {% endfor %}
+                    </div>
+                </div>
+
+
+                <div class="mb-0">
+
+                    
+                    <div class="row mb-1">
+
+                        <div class="col-lg-1 col-md-1 col-2">
+                            <span><i class="fas fa-user-check"></i></span>
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-10">
+                            <input type="password" class="form-control mb-2" name="{{form.password.name }}" id="password"
+                                placeholder="Password">
+                                <div class="form-text text-muted text-lowercase font-weight-normal d-inline">Make Sure to use correct password</div>
+                            <small class="text-danger"> {% for err in form.password.errors %}{{ err }}{% endfor %} </small>
+
+                         </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                
+                    <div class="col-10 mx-auto d-inline">
+                        <button type="submit" class="btn rmybtn btn-primary w-100 mx-auto mb-2 py-2" name="submit"><i
+                                class="fas fa-user-plus mx-2"></i> Log In</button>
+                    </div>
+                </div>
+
+                <div class="row my-1">
+                    <div class="col-6 text-left">
+                        <a href="#" class="text-nowrap"><small>Forgot Password?</small></a>
+                    </div>
+                    <div class="col-6 text-left">
+                        <a href="{% url 'registration' %}" class="text-nowrap"><small>Doesn't have account?</small></a>
+                    </div>
+                    
+                </div>
+           
+            </form>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+{% endblock 'maincontent' %}
+
+

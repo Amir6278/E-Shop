@@ -1,0 +1,244 @@
+/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
+html,
+body,
+.view {
+  height: 100%; }
+
+/* Half Page Carousel itself*/
+.carousel {
+  height: 50%; }
+  .carousel .carousel-inner {
+    height: 100%; }
+    .carousel .carousel-inner .carousel-item,
+    .carousel .carousel-inner .active {
+      height: 100%; }
+body{
+  overflow-x: hidden;
+}
+/* Adjustment for mobile devices*/
+@media (max-width: 776px) {
+  .carousel {
+    height: 50%!important; } }
+
+.nav-link{
+  transition: .9s;
+}
+.active{
+      color: red!important;
+      
+      font-weight:800;
+      font-size: inherit;
+  }
+.card-head{
+  transition: .6s;
+}
+.card-head:hover{
+  transform: scale(1.08);
+}
+.mycard{
+  transition: .5s;
+  height: 45vh;
+  text-align: center;
+}
+.card-img-top:hover{
+cursor: pointer;
+}
+.extraimg{
+  transition: .6s;
+}
+.extraimg:hover{
+  cursor:pointer;
+  transform: scale(3.5);
+}
+.mycard:hover{
+  transform: scale(1.03);
+  cursor: pointer;
+}
+/* Footer color for sake of consistency with Navbar */
+.page-footer {
+  background-color: #929FBA; }
+
+  footer {
+    background-color: #000;
+    color: rgba(255, 255, 255, 0.5);
+    padding: 10px 5px;
+}
+
+footer ul {
+    list-style: none;
+}
+
+footer li a {
+    text-decoration: none;
+    transition: .9s;
+    padding: 5px 10px;
+    display: inline-block;
+    margin-bottom: 2px;
+    font-size: 16px;
+    font-weight: 300;
+    color:#fff;
+}
+
+footer li a:hover {
+    color: #db3c3e;
+}
+
+footer h6 {
+    margin: 10px auto;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.footerTop .logo {
+    margin: 5px auto;
+    font-size: 20px;
+}
+
+.footerTop p {
+    color: #fff;
+    font-weight: 300;
+    margin-top: 20px;
+    line-height: 2;
+}
+html,
+body,
+header,
+.carousel {
+  height: 60vh;
+}
+body{
+  font-family: 'Roboto', sans-serif;
+
+}
+
+@media (max-width: 740px) {
+
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 850px) {
+
+  html,
+  body,
+  header,
+  .carousel {
+    height: 100vh;
+  }
+}
+
+
+
+/* registration css */
+
+
+
+.center {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.myrow{
+background:white;
+padding: 20px 20px;
+margin-top: 10px;
+border:1px solid #ddd;
+max-width:max-content;
+}
+.myrow h3{
+font-weight: 700;
+font-family: monospace;
+font-size: 28px;
+}
+
+.myrow input{
+padding: 11px 15px;
+font-size: 16px;
+font-weight: 600;
+border: 2px solid #ddd;
+border-radius: 10px;
+box-shadow: 4px 4px 2px #fff;
+display: inline-block;
+
+
+}
+.myrow input:focus{
+letter-spacing: 2px;
+box-shadow: 5px 4px 5px rgba(0,0,0,0.8);
+color:#000;
+background: whitesmoke;
+border-color:gray;
+}
+.logout {
+  position: absolute;
+  right: 0px;
+}
+.myrow span i{
+font-size: 20px;
+color: gray;
+transform:translateX(-10%);
+
+}
+
+
+/* Button Styles */
+.rmybtn{
+font-size: 15px;
+font-weight: 600;
+letter-spacing: 5px;
+text-transform: uppercase;
+position: relative;
+z-index: 1;
+border-radius: 10px;
+transition: .3s;
+}
+
+.rmybtn::after{
+position: absolute;
+
+content:"";
+display: block;
+width: 100%;
+height: 100%;
+top:0;
+left:0;
+
+z-index: -1;
+transition: 1.5s ease;
+border-radius: 10px;
+
+}
+
+.rmybtn:hover::after{
+  background-color: rgba(0,0,0,0.6);
+}
+.rmybtn:hover{
+transform: scaleY(1.0001);
+letter-spacing: 4px;
+box-shadow: 2px 3px 5px #111;
+}
+
+
+
+@media (min-width: 1025px) {
+  .h-custom {
+  height: 100vh !important;
+  }
+  }
+#main{
+  margin-top: 5%;
+}
+/* .mycard{
+  position: relative;
+}
+.cross{
+  position:absolute;
+  top:0;
+  right: -20%;
+} */
