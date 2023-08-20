@@ -8,6 +8,7 @@ from .models import user_profile
 #registration
 
 class Registration(UserCreationForm):
+    username = forms.CharField()
     email = forms.EmailField(required=True)
     class Meta:
         model = User
@@ -15,11 +16,11 @@ class Registration(UserCreationForm):
     
 
 class Userlogin(AuthenticationForm):
-   email = forms.EmailField(required=True)
    password = forms.CharField(widget=forms.PasswordInput())
    class Meta:
         model = User
-        fields = ['email']
+        fields= ['username','password1']
+
 
 
 class ProfileForm(forms.ModelForm):

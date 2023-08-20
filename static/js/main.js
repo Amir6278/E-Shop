@@ -34,3 +34,5 @@ $(document).ready(function () {
         scrollTop: $('#Register,#login').offset().top
     }, 'slow');
 });
+
+console.log('o33k')

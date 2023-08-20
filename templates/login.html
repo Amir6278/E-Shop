@@ -38,9 +38,10 @@
                         <span><i class="fas fa-envelope-open"></i></span>
                     </div>
                     <div class="col-lg-10 col-md-10 col-10 col-xs-10">
-                        <input type="email" class="form-control mb-2" id="email" name="{{form.email.name}}" maxlength="200"
-                            aria-describedby="email" placeholder="example@mail.com">
-                            {% for err in form.email.errors %}
+                        <input type="text" class="form-control mb-2" id="email" name="{{form.username.name}}" maxlength="200"
+                            aria-describedby="email" placeholder="johnDoe"><br>
+                          
+                            {% for err in form.username.errors %}
                             <small class="text-danger">{{err}}</small>
                             {% endfor %}
                     </div>
@@ -59,7 +60,7 @@
                             <input type="password" class="form-control mb-2" name="{{form.password.name }}" id="password"
                                 placeholder="Password">
                                 <div class="form-text text-muted text-lowercase font-weight-normal d-inline">Make Sure to use correct password</div>
-                            <small class="text-danger"> {% for err in form.password.errors %}{{ err }}{% endfor %} </small>
+                            <small class="text-danger"><br> {% for err in form.password.errors %}{{ err }}{% endfor %} </small>
 
                          </div>
                     </div>
@@ -69,7 +70,7 @@
                 <div class="row">
                 
                     <div class="col-10 mx-auto d-inline">
-                        <button type="submit" class="btn rmybtn btn-primary w-100 mx-auto mb-2 py-2" name="submit"><i
+                        <button type="submit" class="btn rmybtn btn-primary w-100 mx-auto mb-2 py-2" name="submit" ><i
                                 class="fas fa-user-plus mx-2"></i> Log In</button>
                     </div>
                 </div>

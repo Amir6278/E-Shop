@@ -4,7 +4,7 @@ from django.shortcuts import render,HttpResponse
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.views import View
-
+from django.core.exceptions import ValidationError
 from authentication.models import user_profile
 from .forms import Registration,Userlogin,ProfileForm
 from django.contrib.auth import authenticate,login,logout,update_session_auth_hash
@@ -42,14 +42,13 @@ class user_login(View):
 
     def post(self,request):
         fm = Userlogin(request.user,data=request.POST)
-        uemail = request.POST['email']
-        userMail = User.objects.filter(email=uemail).exists()
-        # print(userMail.username)
+        uemail = request.POST['username']
+        userExits = User.objects.filter(username=uemail).exists()
         # request.POST['username'] = userMail.username
-        if userMail:
-                 uname = User.objects.get(email=uemail).username
+        if userExits:
+                 username = uemail
                  pasword = request.POST['password']
-                 user = authenticate(username=uname,password=pasword)
+                 user = authenticate(username=username,password=pasword)
                  if user is not None:
                      login(request,user)
                      return HttpResponseRedirect('/')
